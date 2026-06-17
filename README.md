@@ -8,6 +8,10 @@ By leveraging Google's cutting-edge **Gemini API**, this extension provides a se
 
 ### Why Choose Gemini Quick Ask?
 
+<p align="center">
+  <img src="@gfx/screenshot2.jpg" alt="Gemini Quick Ask Screenshot" width="600">
+</p>
+
 Unlike clunky sidebars or separate chat windows, Gemini Quick Ask focuses on speed and surgical precision. It was built for power users who value efficiency and privacy.
 
 **100% Free & Private:**
