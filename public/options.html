@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gemini Settings</title>
+    <link rel="stylesheet" href="content.css">
+    <style>
+        body { 
+            background: #f1f3f4; 
+            padding: 40px; 
+            display: flex; 
+            justify-content: center;
+        }
+        .settings-card {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            width: 100%;
+            max-width: 600px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+        h1 { margin-top: 0; font-size: 24px; color: #202124; }
+        .field { margin-bottom: 24px; }
+        label { display: block; font-weight: 500; margin-bottom: 8px; color: #3c4043; }
+        input[type="text"], textarea { 
+            width: 100%; 
+            padding: 10px; 
+            border: 1px solid #dadce0; 
+            border-radius: 4px; 
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        .mono-input {
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace !important;
+        }
+        .prompt-item { 
+            background: #f8f9fa;
+            border: 1px solid #dadce0; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 4px;
+        }
+        .prompt-name { font-weight: bold; }
+        .prompt-text { height: 60px; }
+        
+        /* Snackbar Styles */
+        .snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #323232;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 14px;
+            box-shadow: 0 3px 5px -1px rgba(0,0,0,.2), 0 6px 10px 0 rgba(0,0,0,.14), 0 1px 18px 0 rgba(0,0,0,.12);
+        }
+
+        .snackbar.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+
+        .gemini-btn-danger {
+            background: #fff;
+            color: #d93025;
+            border-color: #dadce0;
+        }
+        .gemini-btn-danger:hover {
+            background: #fce8e6;
+            border-color: #f19f97;
+        }
+    </style>
+</head>
+<body>
+    <div class="settings-card">
+        <h1>Gemini Settings</h1>
+        
+        <div class="field">
+            <label for="apiKey">Gemini API Key:</label>
+            <input type="text" id="apiKey" class="mono-input" placeholder="AIzaSy...">
+        </div>
+
+        <div class="field">
+            <label for="model">Gemini Model:</label>
+            <input type="text" id="model" class="mono-input" value="gemini-1.5-flash">
+        </div>
+
+        <div class="field">
+            <label for="systemPrompt">System Instruction / Initial Prompt:</label>
+            <textarea id="systemPrompt" placeholder="e.g. Always respond in English. Be concise." style="height: 60px;"></textarea>
+            <small style="color: #5f6368; font-size: 11px;">This prompt is prepended to every request.</small>
+        </div>
+
+        <div class="field">
+            <label for="modalScale">Modal Scale:</label>
+            <input type="text" id="modalScale" placeholder="e.g. 1, 1.2, 1.5" value="1" style="width: 100px;">
+            <small style="color: #5f6368; font-size: 11px; display: block; margin-top: 4px;">Zoom the entire chat window (1 = default, 1.5 = 50% larger).</small>
+        </div>
+
+        <div class="field">
+            <label>Keyboard Shortcut:</label>
+            <p style="font-size: 13px; color: #3c4043; margin-top: 0;">
+                Current shortcut: <code id="current-shortcut">Ctrl+Shift+G</code><br>
+                <a href="#" id="manage-shortcuts" style="color: var(--gemini-primary); text-decoration: none; font-weight: 500;">Click here to change shortcut in Chrome settings</a>
+            </p>
+        </div>
+
+        <div class="field">
+            <label>Custom Prompts (Buttons):</label>
+            <div id="promptsList"></div>
+            <button class="gemini-btn" id="addPrompt" style="margin-top: 10px;">+ Add New Prompt</button>
+        </div>
+
+        <div style="margin-top: 30px; border-top: 1px solid #eee; padding-top: 20px; display: flex; justify-content: flex-end;">
+            <button class="gemini-btn gemini-btn-primary" id="save">Save All Settings</button>
+        </div>
+    </div>
+
+    <div id="snackbar" class="snackbar">Settings saved successfully!</div>
+
+    <script src="options.js"></script>
+</body>
+</html>
