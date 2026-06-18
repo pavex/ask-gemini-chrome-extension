@@ -26,20 +26,42 @@ chrome.commands.onCommand.addListener((command) => {
     }
 });
 
-// Listener for messages from content scripts
+// Listener for messages from UI
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "openOptions") {
         chrome.runtime.openOptionsPage();
-        return true; // Keep the message channel open for async if needed
+        return true;
     }
 });
 
-function triggerGemini(tab, selectionText = null) {
-    if (!tab.id) return;
-    chrome.tabs.sendMessage(tab.id, {
-        action: "trigger",
-        selectionText: selectionText
-    }).catch(err => {
-        console.error("Could not send message to tab. Content script might not be loaded.", err);
-    });
+async function triggerGemini(tab, selectionText = null) {
+    if (!tab.id || tab.url.startsWith('chrome://')) return;
+
+    try {
+        // 1. Inject CSS
+        await chrome.scripting.insertCSS({
+            target: { tabId: tab.id },
+            files: ['content.css']
+        });
+
+        // 2. Inject JS (Content Script)
+        await chrome.scripting.executeScript({
+            target: { tabId: tab.id },
+            files: ['content.js']
+        });
+
+        // 3. Send message to the newly injected script
+        // We add a small delay to ensure the script has registered its listener
+        setTimeout(() => {
+            chrome.tabs.sendMessage(tab.id, {
+                action: "trigger",
+                selectionText: selectionText
+            }).catch(err => {
+                console.error("Message delivery failed:", err);
+            });
+        }, 100);
+
+    } catch (err) {
+        console.error("Injection failed:", err);
+    }
 }

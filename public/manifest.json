@@ -24,13 +24,6 @@
       "description": "Open Gemini Chat with context"
     }
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["content.css"]
-    }
-  ],
   "host_permissions": [
     "https://generativelanguage.googleapis.com/*"
   ]
