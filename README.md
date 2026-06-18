@@ -20,6 +20,8 @@ Unlike clunky sidebars or separate chat windows, Gemini Quick Ask focuses on spe
 - 💾 **Local Storage Only:** Your API key, custom prompts, and settings are stored **only in your browser's local storage**. Nothing is ever sent to our servers or any third party (except Google's API).
 - 🛡️ **BYOK (Bring Your Own Key):** You maintain full control over your AI co-pilot's identity, costs, and data privacy.
 
+[Read our full Privacy Policy here.](PRIVACY.md)
+
 ---
 
 ## 🚀 Key Features
