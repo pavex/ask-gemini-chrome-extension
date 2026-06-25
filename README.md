@@ -1,5 +1,7 @@
 # Gemini Quick Ask - Google Chrome extension
 
+🚀 **Available on the [Chrome Web Store](https://chromewebstore.google.com/detail/gemini-quick-ask/ckihdjmebalonbagamcmhkjjnkeekgfe)**
+
 ## Supercharge Your Browsing with the Power of Google Gemini AI
 
 **Gemini Quick Ask** is a high-performance, lightweight Google Chrome extension designed to bridge the gap between your web browsing and advanced artificial intelligence. In an era where information density is at an all-time high, this extension serves as your personal AI co-pilot, enabling you to distill, explain, and interact with any content on the web instantly.
@@ -36,7 +38,11 @@ Unlike clunky sidebars or separate chat windows, Gemini Quick Ask focuses on spe
 
 ## 🛠 Installation
 
+### For Users (Recommended)
+The easiest way to install **Gemini Quick Ask** is directly from the official **[Chrome Web Store](https://chromewebstore.google.com/detail/gemini-quick-ask/ckihdjmebalonbagamcmhkjjnkeekgfe)**. Just click "Add to Chrome" and you are ready to go!
+
 ### For Users (Manual Installation)
+If you prefer to install it manually or use a custom build:
 1. Download the latest release package: `ask-gemini-vX.X.X.zip`.
 2. Extract the ZIP file to a permanent folder on your computer.
 3. Open Google Chrome and go to `chrome://extensions/`.
